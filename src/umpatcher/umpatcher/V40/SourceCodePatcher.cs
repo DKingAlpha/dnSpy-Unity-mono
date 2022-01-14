@@ -1,4 +1,4 @@
-﻿/*
+/*
     Copyright (C) 2018 de4dot@gmail.com
 
     This file is part of umpatcher
@@ -98,9 +98,10 @@ namespace UnityMonoDllSourceCodePatcher.V40 {
 				int index = textFilePatcher.GetIndexesOfLine(line => line.Text.Contains("case CMD_THREAD_GET_FRAME_INFO: {")).Single();
 				index = textFilePatcher.GetIndexOfLine(line => line.Text.Contains("tls = (DebuggerTlsData *)mono_g_hash_table_lookup (thread_to_tls, thread);"), index);
 				Verify(lines[index + 1].Text, "\t\tmono_loader_unlock ();");
-				Verify(lines[index + 2].Text, "\t\tg_assert (tls);");
-				lines[index + 2] = lines[index + 2].Replace("\t\tif (!tls)");
-				textFilePatcher.Insert(index + 3, "\t\t\treturn ERR_INVALID_ARGUMENT;");
+				if(lines[index + 2].Text == "\t\tg_assert (tls);") {
+					lines[index + 2] = lines[index + 2].Replace("\t\tif (!tls)");
+					textFilePatcher.Insert(index + 3, "\t\t\treturn ERR_INVALID_ARGUMENT;");
+				}
 			}
 
 			textFilePatcher.Write();
