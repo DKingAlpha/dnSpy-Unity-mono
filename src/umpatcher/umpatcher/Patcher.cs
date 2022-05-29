@@ -1,4 +1,4 @@
-﻿/*
+/*
     Copyright (C) 2018 de4dot@gmail.com
 
     This file is part of umpatcher
@@ -53,6 +53,7 @@ namespace UnityMonoDllSourceCodePatcher {
 
 		void CopyOriginalUnityFiles() {
 			Log($"Copying files from {unityRepo.RepoPath} to {dnSpyVersionPath}");
+			/*
 			unityRepo.ThrowIfTreeNotClean();
 			dnSpyRepo.ThrowIfTreeNotClean();
 			unityRepo.CheckOut(unityGitHash);
@@ -66,6 +67,7 @@ namespace UnityMonoDllSourceCodePatcher {
 					unityRepo.SubmoduleUpdate(relPath);
 			}
 			unityRepo.ThrowIfTreeNotClean();
+			*/
 
 			FileUtils.CopyFilesFromTo(unityRepo.RepoPath, dnSpyVersionPath);
 			foreach (var dir in UnityFoldersToCopy) {

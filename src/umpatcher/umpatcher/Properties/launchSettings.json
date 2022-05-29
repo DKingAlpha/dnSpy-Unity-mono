@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "umpatcher": {
+      "commandName": "Project",
+      "commandLineArgs": "2020.3.7-mbe 65cafec3cf5ac7517b952cf739740f7a224ce947 G:\\dnspy\\mono G:\\dnspy\\dnSpy-Unity-mono"
+    }
+  }
+}
